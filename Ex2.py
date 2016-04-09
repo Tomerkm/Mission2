@@ -10,7 +10,7 @@ OUTPUT_FILENAME = 'out.csv'
 with open("C:/Users/user/Downloads/Desktop/r.txt", 'r') as input_file:
 
     # open the output file in write mode
-    with open("C:/Users/user/Downloads/Desktop/out.csv", 'w') as output_file:
+    with open("C:/Users/user/Downloads/Desktop/out.csv", 'wt') as output_file:
 
         # create a csv reader object from the input file (nmea files are basically csv)
         reader = csv.reader(input_file)
