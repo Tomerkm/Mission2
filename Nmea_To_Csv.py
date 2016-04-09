@@ -7,7 +7,7 @@ INPUT_FILENAME = 'in.nmea'
 OUTPUT_FILENAME = 'out.csv'
 
 # open the input file in read mode
-with open("C:/Users/user/Downloads/Desktop/r.txt", 'r') as input_file:
+with open("C:/Users/user/Downloads/Desktop/br.txt", 'r') as input_file:
 
     # open the output file in write mode
     with open("C:/Users/user/Downloads/Desktop/out.csv", 'wt') as output_file:
@@ -40,6 +40,7 @@ with open("C:/Users/user/Downloads/Desktop/r.txt", 'r') as input_file:
                 lon_direction = row[6]
                 speed = row[7]
                 date =  row[9]
+
 
                 # if the "warning" value is "V" (void), you may want to skip it since this is an indicator for an incomplete data row)
                 if warning == 'V':
