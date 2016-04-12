@@ -24,6 +24,9 @@ with open("C:/Users/user/Downloads/Desktop/br.txt", 'r') as input_file:
         # iterate over all the rows in the nmea file
         for row in reader:
 
+            if not row:
+                continue
+
             # skip all lines that do not start with $GPRMC
             if not row[0].startswith('$GPRMC'):
                 continue
