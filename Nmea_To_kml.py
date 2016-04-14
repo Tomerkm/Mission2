@@ -44,15 +44,13 @@ def main():
         kml_file.write('<Placemark>\n')
         hhmmss = list[1]
         time = hhmmss[0:2]+":"+ hhmmss[2:4]+":" +hhmmss[4:10]
-        lat2 = float(list[2][:2]) + (float(list[2][2:]) / 60)
-        latitude = list[2] +" " + list[3]
-        lon2 = float(list[4][:3]) + (float(list[4][3:]) / 60)
-        longtitude = list[4] +" " + list[5]
+        latitude = float(list[2][:2]) + (float(list[2][2:]) / 60)
+        longtitude = float(list[4][:3]) + (float(list[4][3:]) / 60)
         altitude = list[9]
 
         kml_file.write('<Point>\n')
 
-        kml_file.write('<coordinates> %s,%s,%s </coordinates>\n' % (lon2,lat2,altitude))
+        kml_file.write('<coordinates> %s,%s,%s </coordinates>\n' % (longtitude,latitude,altitude))
         kml_file.write('</Point>\n')
         kml_file.write('</Placemark>\n')
 
