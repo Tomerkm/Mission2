@@ -2,24 +2,36 @@ import csv
 from datetime import datetime
 import math
 from tkinter import messagebox
+import os.path
 
 # adapt this to your file
+
 INPUT_FILENAME = 'in.nmea'
 OUTPUT_FILENAME = 'out.csv'
 
+counter=0
+
 def creat_csv(FILE_NAME):
+
+
 
 
     if FILE_NAME=='':
         return
     if not FILE_NAME.endswith(".nmea"):
-        messagebox.showinfo("info", "message")
+        messagebox.showinfo("error", "The File Does not End with nmea")
         return
+    if not os.path.isfile(FILE_NAME):
+        messagebox.showinfo("error", "The Source File Does not exists")
+        return
+    global counter
+    counter+=1
+    print(counter)
 # open the input file in read mode
     with open(FILE_NAME, 'r') as input_file:
 
         # open the output file in write mode
-        with open("C:/Users/user/Downloads/Desktop/out.csv", 'wt') as output_file:
+        with open("C:/Users/user/Downloads/Desktop/out_csv"+str(counter)+".csv", 'wt') as output_file:
 
             # create a csv reader object from the input file (nmea files are basically csv)
             reader = csv.reader(input_file)
@@ -84,6 +96,8 @@ def creat_csv(FILE_NAME):
 
                     # write the calculated/formatted values of the row that we just read into the csv file
                     writer.writerow([date_and_time, lat, lon, speed])
+
+    messagebox.showinfo("Succesfull", "The Csv File Has been created in your desktop: out_csv "+str(counter)+".csv")
 
 
 
