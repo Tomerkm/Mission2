@@ -45,15 +45,56 @@ Label(text="\n\n________________________________________________________________
 Label(text="Insert Values To the Options That you want to Query to csv or kml:",fg="green").pack(side=TOP,padx=0)
 
 Label(root, fg="teal",width=30,text='date:').pack(side=TOP, padx=0)
-Entry(root,width=20,textvariable=Dater, fg="brown", bg='white').pack(side=TOP, padx=0)
+Entry(root,width=15,textvariable=Dater, fg="brown", bg='white').pack(side=TOP, padx=0)
 
 Dater.set("YYYY-MM-DD")
 
 Label(root, fg="red",width=30,text='time:').pack(side=TOP, padx=0)
-Entry(root,width=20,textvariable=Timer, fg="green", bg='white').pack(side=TOP, padx=0)
+Entry(root,width=10,textvariable=Timer, fg="green", bg='white').pack(side=TOP, padx=0)
 
 Timer.set("HH:MM:SS")
 
+Label(root, fg="orange",width=30,text='latitude:').pack(side=TOP, padx=0)
+Entry(root,width=5,textvariable=latitude, fg="red", bg='white').pack(side=TOP, padx=0)
+
+latitude.set('')
+
+Label(root, fg="blue",width=30,text='lat_direction:').pack(side=TOP, padx=0)
+Entry(root,width=2,textvariable=lat_direction, fg="green", bg='white').pack(side=TOP, padx=0)
+
+lat_direction.set('')
+
+Label(root, fg="black",width=30,text='longtitude:').pack(side=TOP, padx=0)
+Entry(root,width=5,textvariable=longtitude, fg="green", bg='white').pack(side=TOP, padx=0)
+
+longtitude.set('')
+
+Label(root, fg="brown",width=30,text='lon_direction:').pack(side=TOP, padx=0)
+Entry(root,width=2,textvariable=lon_direction, fg="green", bg='white').pack(side=TOP, padx=0)
+
+lon_direction.set('')
+
+
+Label(root, fg="lightblue",width=30,text='Number_of_satellites_being_tracked:').pack(side=TOP, padx=0)
+Entry(root,width=2,textvariable=Number_of_satellites_being_tracked, fg="green", bg='white').pack(side=TOP, padx=0)
+
+Number_of_satellites_being_tracked.set('')
+
+Label(root, fg="teal",width=30,text='altitude:').pack(side=TOP, padx=0)
+Entry(root,width=5,textvariable=altitude, fg="green", bg='white').pack(side=TOP, padx=0)
+
+altitude.set('')
+
+Label(root, fg="grey",width=30,text='altitude_M:').pack(side=TOP, padx=0)
+Entry(root,width=2,textvariable=altitude_M, fg="green", bg='white').pack(side=TOP, padx=0)
+
+altitude_M.set('')
+
+
+Label(root, fg="teal",width=30,text='SPEED:').pack(side=TOP, padx=0)
+Entry(root,width=5,textvariable=SPEED, fg="green", bg='white').pack(side=TOP, padx=0)
+
+SPEED.set('')
 
 
 mainloop()
