@@ -1,14 +1,38 @@
 import sqlite3
 from datetime import datetime
 import math
+from tkinter import messagebox
+import os.path
 
-def main():
+
+
+counter=0
+
+
+def create_table(FILE_NAME):
+
+
+
+
+
+    if FILE_NAME=='':
+        return
+    if not FILE_NAME.endswith(".nmea"):
+        messagebox.showinfo("error", "The File Does not End with nmea")
+        return
+    if not os.path.isfile(FILE_NAME):
+        messagebox.showinfo("error", "The Source File Does not exists")
+        return
 
     conn = sqlite3.connect("tk.db")
     c = conn.cursor()
 
-    sql = """CREATE TABLE FILE (
-         Time_Clock TEXT,
+
+    global counter
+    counter+=1
+
+    sql = """CREATE TABLE FILE"""+str(counter)+""" (
+         dater datetime,
          latitude FLOAT,
          N TEXT,
          longtitude FLOAT,
@@ -21,9 +45,7 @@ def main():
           )"""
 
     c.execute(sql)
-
-
-    in_filename = "C:/Users/user/Downloads/Desktop/br.nmea"
+    in_filename = FILE_NAME
 
     list_GPGGA=""
     list_GPRMC=""
@@ -60,7 +82,7 @@ def main():
         date_and_time = datetime.strptime(date + ' ' + time, '%d%m%y %H%M%S.%f')
 
         # convert the Python datetime into your preferred string format, see http://www.tutorialspoint.com/python/time_strftime.htm for futher possibilities
-        date_and_time = date_and_time.strftime('%d/%m/%y %H:%M:%S.%f')[:-3] # [:-3] cuts off the last three characters (trailing zeros from the fractional seconds)
+        date_and_time = date_and_time.strftime('%y-%m-%d %H:%M:%S.%f')[:-3] # [:-3] cuts off the last three characters (trailing zeros from the fractional seconds)
 
         # speed is given in knots, you'll probably rather want it in km/h and rounded to full integer values.
         # speed has to be converted from string to float first in order to do calculations with it.
@@ -69,7 +91,7 @@ def main():
 
 
         # Prepare SQL query to INSERT a record into the database.
-        sql = "INSERT INTO FILE(Time_Clock, \
+        sql = "INSERT INTO FILE"+str(counter)+"(dater, \
         latitude, N, longtitude,W,Number_of_satellites_being_tracked , Horizontal_dilution_of_position , altitude ,altitude_M,SPEED ) \
         VALUES ('%s', '%f', '%s','%f', '%s', '%d','%f', '%f', '%s','%d' )" % \
         (date_and_time , float(latitude) , list_GPGGA[3] , float(longtitude) , list_GPGGA[5], int(list_GPGGA[7]) , float(list_GPGGA[8]) , float(altitude) , list_GPGGA[10],speed)
@@ -79,10 +101,13 @@ def main():
             # Commit your changes in the database
             conn.commit()
         except sqlite3.Error as er:
-
-            print(er)
             # Rollback in case there is any error
             conn.rollback()
+
+    messagebox.showinfo("Succesfull", "The File" +str(counter)+ " Has been created in your DB")
+
+def main():
+    print('main')
 
 
 
