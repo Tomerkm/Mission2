@@ -15,17 +15,17 @@ t.set('')
 
 Label(text="\n\nClick On Button That You want TO active!\n\n", fg="teal").pack()
 
-Button(text="convert to csv",background="red", command = lambda:Nmea_To_Csv.creat_csv(t.get())).pack()
-Button(text="convert to kml",background="green",command = lambda:Nmea_To_kml.create_kml(t.get())).pack()
-Button(text="create a file to db",background="yellow", command = lambda:sqllite.create_table(t.get())).pack()
-Button(text="Exit",background="grey", command=sys.exit).pack()
+Button(text="convert to csv",background="red",relief=SOLID,command = lambda:Nmea_To_Csv.creat_csv(t.get())).pack()
+Label(text="\n").pack()
+Button(text="convert to kml",background="green",relief=SOLID,command = lambda:Nmea_To_kml.create_kml(t.get())).pack()
+Label(text="\n").pack()
+Button(text="create a file to db",background="yellow",relief=SOLID,command = lambda:sqllite.create_table(t.get())).pack()
+Label(text="\n").pack()
+Button(text="Exit",background="grey",relief=SOLID,command=sys.exit).pack()
 
 
 Label(text="\n\nClick On Button That You want TO active!", fg="green").pack()
 
-def quit(event):
-    if tkMessageBox.askokcancel('Quit','Do you really want to quit?'):
-        root.destroy()
-root.bind('<q>', quit)
+
 
 mainloop()
