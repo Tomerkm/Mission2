@@ -17,4 +17,7 @@ Button(text="convert to csv", command = lambda:Nmea_To_Csv.creat_csv(t.get())).p
 Button(text="convert to kml",command = lambda:Nmea_To_kml.create_kml(t.get())).pack()
 Button(text="create a file to db", command = lambda:sqllite.create_table(t.get())).pack()
 Button(text="Exit", command=sys.exit).pack()
+
+
+
 mainloop()

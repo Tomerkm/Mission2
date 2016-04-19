@@ -35,17 +35,14 @@ def create_table(FILE_NAME):
         return
 
     c = conn.cursor()
-
-
-
     counter+=1
 
     sql = """CREATE TABLE FILE"""+str(counter)+""" (
          dater datetime,
          latitude FLOAT,
-         N TEXT,
+         lat_direction TEXT,
          longtitude FLOAT,
-         W TEXT,
+         lon_direction TEXT,
          Number_of_satellites_being_tracked INT,
          Horizontal_dilution_of_position FLOAT,
          altitude FLOAT,
@@ -101,7 +98,8 @@ def create_table(FILE_NAME):
 
         # Prepare SQL query to INSERT a record into the database.
         sql = "INSERT INTO FILE"+str(counter)+"(dater, \
-        latitude, N, longtitude,W,Number_of_satellites_being_tracked , Horizontal_dilution_of_position , altitude ,altitude_M,SPEED ) \
+        latitude, lat_direction , longtitude , lon_direction" \
+        ",Number_of_satellites_being_tracked , Horizontal_dilution_of_position , altitude ,altitude_M,SPEED ) \
         VALUES ('%s', '%f', '%s','%f', '%s', '%d','%f', '%f', '%s','%d' )" % \
         (date_and_time , float(latitude) , list_GPGGA[3] , float(longtitude) , list_GPGGA[5], int(list_GPGGA[7]) , float(list_GPGGA[8]) , float(altitude) , list_GPGGA[10],speed)
         try:
@@ -110,6 +108,7 @@ def create_table(FILE_NAME):
             # Commit your changes in the database
             conn.commit()
         except sqlite3.Error as er:
+            print(er)
             # Rollback in case there is any error
             conn.rollback()
 
