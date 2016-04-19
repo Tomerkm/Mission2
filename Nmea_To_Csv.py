@@ -65,6 +65,23 @@ def creat_csv(FILE_NAME):
                     speed = row[7]
                     date =  row[9]
 
+                    if row[1]=='':
+                        continue
+                    if row[2]=='':
+                        continue
+                    if row[3]=='':
+                        continue
+                    if row[4]=='':
+                        continue
+                    if row[5]=='':
+                        continue
+                    if row[6]=='':
+                        continue
+                    if row[7]=='':
+                        continue
+                    if row[9]=='':
+                        continue
+
 
                     # if the "warning" value is "V" (void), you may want to skip it since this is an indicator for an incomplete data row)
                     if warning == 'V':

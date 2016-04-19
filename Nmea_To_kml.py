@@ -50,6 +50,19 @@ def create_kml(FILE_NAME):
 
         list = line.split(',')
 
+        if list[2][:2]=='':
+            continue
+        if list[2][2:]=='':
+            continue
+        if list[4][:3]=='':
+            continue
+        if list[4][3:]=='':
+            continue
+        if list[9]=='':
+            continue
+        if list[1]=='':
+            continue
+
 
         kml_file.write('<Placemark>\n')
         hhmmss = list[1]

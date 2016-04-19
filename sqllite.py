@@ -70,8 +70,16 @@ def create_table(FILE_NAME):
         # Save Values for GPGGA
         if line.startswith('$GPGGA'):
             list_GPGGA = line.split(',')
-            latitude = float(list_GPGGA[2][:2]) + (float(list_GPGGA[2][2:]) / 60)
-            longtitude = float(list_GPGGA[4][:3]) + (float(list_GPGGA[4][3:]) / 60)
+
+            if list_GPGGA[2]=='':
+                continue
+            if list_GPGGA[4]=='':
+                continue
+            if list_GPGGA[9]=='':
+                continue
+
+            latitude = float(list_GPGGA[2])
+            longtitude = float(list_GPGGA[4])
             altitude = list_GPGGA[9]
             continue
 
@@ -80,6 +88,12 @@ def create_table(FILE_NAME):
 
 
         list_GPRMC = line.split(',')
+        if list_GPRMC[1]=='':
+            continue
+        if list_GPRMC[7]=='':
+            continue
+        if list_GPRMC[9]=='':
+            continue
         time = list_GPRMC[1]
         speed = list_GPRMC[7]
         date =  list_GPRMC[9]
@@ -98,8 +112,7 @@ def create_table(FILE_NAME):
 
         # Prepare SQL query to INSERT a record into the database.
         sql = "INSERT INTO FILE"+str(counter)+"(dater, \
-        latitude, lat_direction , longtitude , lon_direction" \
-        ",Number_of_satellites_being_tracked , Horizontal_dilution_of_position , altitude ,altitude_M,SPEED ) \
+        latitude, lat_direction, longtitude,lon_direction,Number_of_satellites_being_tracked , Horizontal_dilution_of_position , altitude ,altitude_M,SPEED ) \
         VALUES ('%s', '%f', '%s','%f', '%s', '%d','%f', '%f', '%s','%d' )" % \
         (date_and_time , float(latitude) , list_GPGGA[3] , float(longtitude) , list_GPGGA[5], int(list_GPGGA[7]) , float(list_GPGGA[8]) , float(altitude) , list_GPGGA[10],speed)
         try:
