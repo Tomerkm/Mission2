@@ -13,6 +13,16 @@ def create_table(FILE_NAME):
 
 
 
+    conn = sqlite3.connect("tk.db")
+    global counter
+
+    if counter==0:
+        cursor = conn.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        tables = cursor.fetchall()
+        for tbl in tables:
+            cursor.execute('''DROP TABLE '''+tbl[0])
+            print ("\n DELETED FILE : ########  "+tbl[0]+"  ########")
 
 
     if FILE_NAME=='':
@@ -24,11 +34,10 @@ def create_table(FILE_NAME):
         messagebox.showinfo("error", "The Source File Does not exists")
         return
 
-    conn = sqlite3.connect("tk.db")
     c = conn.cursor()
 
 
-    global counter
+
     counter+=1
 
     sql = """CREATE TABLE FILE"""+str(counter)+""" (
