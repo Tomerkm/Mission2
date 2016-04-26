@@ -98,6 +98,12 @@ def create_table(FILE_NAME):
         speed = list_GPRMC[7]
         date =  list_GPRMC[9]
 
+        dater=datetime.strptime(date, '%d%m%y')
+        timer= datetime.strptime(date, '%H%M%S')
+        print(dater.date())
+        print(timer.time())
+
+        continue
         # merge the time and date columns into one Python datetime object (usually more convenient than having both separately)
         date_and_time = datetime.strptime(date + ' ' + time, '%d%m%y %H%M%S.%f')
 
