@@ -1,8 +1,11 @@
+import sqlite3
 import csv
-from datetime import datetime
+import datetime
+import time
 import math
 from tkinter import messagebox
 import os.path
+import Interface_Function
 
 # adapt this to your file
 
@@ -88,7 +91,7 @@ def creat_csv(FILE_NAME):
                         continue
 
                     # merge the time and date columns into one Python datetime object (usually more convenient than having both separately)
-                    date_and_time = datetime.strptime(date + ' ' + time, '%d%m%y %H%M%S.%f')
+                    date_and_time = datetime.datetime.strptime(date + ' ' + time, '%d%m%y %H%M%S.%f')
 
                     # convert the Python datetime into your preferred string format, see http://www.tutorialspoint.com/python/time_strftime.htm for futher possibilities
                     date_and_time = date_and_time.strftime('%y-%m-%d %H:%M:%S.%f')[:-3] # [:-3] cuts off the last three characters (trailing zeros from the fractional seconds)
@@ -117,6 +120,18 @@ def creat_csv(FILE_NAME):
     messagebox.showinfo("Succesfull", "The Csv File Has been created in your desktop: out_csv "+str(counter)+".csv")
 
 
+
+def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_tracked,altitude,SPEED):
+    Query=""
+    Interface_Function.Valid_Input(Query,DATER,TIMER,latitude,longtitude,Number_of_satellites_being_tracked,altitude,SPEED)
+    print('tomer')
+    conn = sqlite3.connect("tk.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+    tables = cursor.fetchall()
+    for tbl in tables:
+        for row in cursor.execute("SELECT * FROM "+tbl+" " + Query + ";"):
+            print (row[0])
 
 def main():
     print('main')
