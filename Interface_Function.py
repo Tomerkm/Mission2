@@ -58,7 +58,6 @@ def Valid_Input(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_track
     if SPEED!="":
         try:
             SPEED = int(SPEED)
-            x2=0
             if SPEED<=0:
                 raise ValueError('SPEED cannot be length empty or negative')
         except Exception as error:

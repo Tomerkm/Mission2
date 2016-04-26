@@ -38,7 +38,8 @@ def create_table(FILE_NAME):
     counter+=1
 
     sql = """CREATE TABLE FILE"""+str(counter)+""" (
-         dater datetime,
+         dater text,
+         timer text,
          latitude FLOAT,
          lat_direction TEXT,
          longtitude FLOAT,
@@ -100,10 +101,7 @@ def create_table(FILE_NAME):
 
         dater=datetime.strptime(date, '%d%m%y')
         timer= datetime.strptime(date, '%H%M%S')
-        print(dater.date())
-        print(timer.time())
 
-        continue
         # merge the time and date columns into one Python datetime object (usually more convenient than having both separately)
         date_and_time = datetime.strptime(date + ' ' + time, '%d%m%y %H%M%S.%f')
 
@@ -117,10 +115,10 @@ def create_table(FILE_NAME):
 
 
         # Prepare SQL query to INSERT a record into the database.
-        sql = "INSERT INTO FILE"+str(counter)+"(dater, \
+        sql = "INSERT INTO FILE"+str(counter)+"(dater,timer, \
         latitude, lat_direction, longtitude,lon_direction,Number_of_satellites_being_tracked , Horizontal_dilution_of_position , altitude ,altitude_M,SPEED ) \
-        VALUES ('%s', '%f', '%s','%f', '%s', '%d','%f', '%f', '%s','%d' )" % \
-        (date_and_time , float(latitude) , list_GPGGA[3] , float(longtitude) , list_GPGGA[5], int(list_GPGGA[7]) , float(list_GPGGA[8]) , float(altitude) , list_GPGGA[10],speed)
+        VALUES ('%s','%s', '%f', '%s','%f', '%s', '%d','%f', '%f', '%s','%d' )" % \
+        (str(dater.date()),str(timer.time()) , float(latitude) , list_GPGGA[3] , float(longtitude) , list_GPGGA[5], int(list_GPGGA[7]) , float(list_GPGGA[8]) , float(altitude) , list_GPGGA[10],speed)
         try:
             # Execute the SQL command
             c.execute(sql)
