@@ -100,7 +100,8 @@ def create_table(FILE_NAME):
         date =  list_GPRMC[9]
 
         dater=datetime.strptime(date, '%d%m%y')
-        timer= datetime.strptime(date, '%H%M%S')
+
+        timer= datetime.strptime(time, '%H%M%S.%f')
 
         # merge the time and date columns into one Python datetime object (usually more convenient than having both separately)
         date_and_time = datetime.strptime(date + ' ' + time, '%d%m%y %H%M%S.%f')
