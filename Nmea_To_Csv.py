@@ -43,7 +43,7 @@ def creat_csv(FILE_NAME):
             writer = csv.writer(output_file, delimiter=',', lineterminator='\n')
 
             # write the header line to the csv file
-            writer.writerow(['date_and_time', 'lat', 'lon', 'speed'])
+            writer.writerow(['date','time', 'lat', 'lon', 'speed'])
 
             # iterate over all the rows in the nmea file
             for row in reader:
@@ -90,6 +90,10 @@ def creat_csv(FILE_NAME):
                     if warning == 'V':
                         continue
 
+                    dater=datetime.datetime.strptime(date, '%d%m%y')
+
+                    timer= datetime.datetime.strptime(time, '%H%M%S.%f')
+
                     # merge the time and date columns into one Python datetime object (usually more convenient than having both separately)
                     date_and_time = datetime.datetime.strptime(date + ' ' + time, '%d%m%y %H%M%S.%f')
 
@@ -115,7 +119,7 @@ def creat_csv(FILE_NAME):
                     speed = int(round(float(speed) * 1.852, 0))
 
                     # write the calculated/formatted values of the row that we just read into the csv file
-                    writer.writerow([date_and_time, lat, lon, speed])
+                    writer.writerow([dater.date(),timer.time(), lat, lon, speed])
 
     messagebox.showinfo("Succesfull", "The Csv File Has been created in your desktop: out_csv "+str(counter)+".csv")
 
