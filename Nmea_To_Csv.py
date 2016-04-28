@@ -129,10 +129,14 @@ def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
     conn = sqlite3.connect("tk.db")
     cursor = conn.cursor()
     counter=1
+    print ("SIZE = "+str(size))
     print("RES = " + Query)
-    for row in cursor.execute("SELECT * FROM FILE"+str(counter)+" "+ Query ):
-        print (row[0] + " " + row[1] + " , " + str(row[2]) + " , " + str(row[4]))
-        print (str(row[6]) + " , "  + str(row[8]) + " , " + str(row[10]))
+    while counter<=size:
+        print("FILER"+str(counter))
+        for row in cursor.execute("SELECT * FROM FILE"+str(counter)+" "+ Query ):
+            print (row[0] + " " + row[1] + " , " + str(row[2]) + " , " + str(row[4]))
+            print (str(row[6]) + " , "  + str(row[8]) + " , " + str(row[10]))
+        counter=counter+1
 
 def main():
     print('main')
