@@ -122,7 +122,7 @@ def creat_csv(FILE_NAME):
 
 
 def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_tracked,altitude,SPEED):
-    print('tomer')
+
     Interface_Function.Valid_Input(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_tracked,altitude,SPEED)
 
     Query=""
@@ -132,17 +132,44 @@ def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
         count=count+1
 
     if TIMER!="" and TIMER!="HH:MM:SS":
-        Query = "where timer="+"'"+TIMER+"'"
+
+        if count==0:
+            Query = "where timer="+"'"+TIMER+"'"
+        else:
+            Query= Query + " And timer="+"'"+TIMER+"'"
         count=count+1
 
+    if latitude!="":
+        latitude = int(latitude)
+        Query = "where CAST(latitude AS INT)="+""+str(latitude)+""
+        count=count+1
 
+    if longtitude!="":
+        latitude = int(longtitude)
+        Query = "where CAST(longtitude AS INT)="+""+str(longtitude)+""
+        count=count+1
+
+    if Number_of_satellites_being_tracked!="":
+        Number_of_satellites_being_tracked = int(Number_of_satellites_being_tracked)
+        Query = "where CAST(Number_of_satellites_being_tracked AS INT)="+""+str(Number_of_satellites_being_tracked)+""
+        count=count+1
+
+    if altitude!="":
+        altitude = int(altitude)
+        Query = "where CAST(altitude AS INT)="+""+str(altitude)+""
+        count=count+1
+
+    if SPEED!="":
+        SPEED = int(SPEED)
+        Query = "where CAST(SPEED AS INT)="+""+str(SPEED)+""
+        count=count+1
 
 
     conn = sqlite3.connect("tk.db")
     cursor = conn.cursor()
     print("RES = " + Query)
     for row in cursor.execute("SELECT * FROM FILE1 " + Query ):
-        print (row[1])
+        print (row[0] + " " + row[1])
 
 def main():
     print('main')
