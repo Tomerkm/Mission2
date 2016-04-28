@@ -1,6 +1,6 @@
 import datetime
 import time
-
+import sqlite3
 
 
 
@@ -122,3 +122,15 @@ def create_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_trac
         count=count+1
 
     return Query
+
+def Count_Files_In_Db():
+
+    conn = sqlite3.connect("tk.db")
+    counter=0
+    cursor = conn.cursor()
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+    tables = cursor.fetchall()
+    for tbl in tables:
+        counter= counter +1
+
+    return counter

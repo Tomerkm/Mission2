@@ -125,11 +125,12 @@ def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
 
     Interface_Function.Valid_Input(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_tracked,altitude,SPEED)
     Query = Interface_Function.create_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_tracked,altitude,SPEED)
-
+    size = Interface_Function.Count_Files_In_Db()
     conn = sqlite3.connect("tk.db")
     cursor = conn.cursor()
+    counter=1
     print("RES = " + Query)
-    for row in cursor.execute("SELECT * FROM FILE1 " + Query ):
+    for row in cursor.execute("SELECT * FROM FILE"+str(counter)+" "+ Query ):
         print (row[0] + " " + row[1] + " , " + str(row[2]) + " , " + str(row[4]))
         print (str(row[6]) + " , "  + str(row[8]) + " , " + str(row[10]))
 
