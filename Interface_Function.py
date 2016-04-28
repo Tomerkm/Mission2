@@ -64,3 +64,61 @@ def Valid_Input(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_track
             raise ValueError(repr(error))
 
 
+def create_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_tracked,altitude,SPEED):
+
+    Query=""
+    count = 0
+    if DATER!="" and DATER!="YYYY-MM-DD":
+        Query = "where dater="+"'"+DATER+"'"
+        count=count+1
+
+    if TIMER!="" and TIMER!="HH:MM:SS":
+
+        if count==0:
+            Query = "where timer="+"'"+TIMER+"'"
+        else:
+            Query= Query + " And timer="+"'"+TIMER+"'"
+        count=count+1
+
+    if latitude!="":
+        latitude = int(latitude)
+        if count==0:
+            Query = "where CAST(latitude AS INT)="+""+str(latitude)+""
+        else:
+            Query= Query + " And CAST(latitude AS INT)="+""+str(latitude)+""
+        count=count+1
+
+    if longtitude!="":
+        latitude = int(longtitude)
+        if count==0:
+            Query = "where CAST(longtitude AS INT)="+""+str(longtitude)+""
+        else:
+            Query= Query + " And CAST(longtitude AS INT)="+""+str(longtitude)+""
+        count=count+1
+
+    if Number_of_satellites_being_tracked!="":
+        Number_of_satellites_being_tracked = int(Number_of_satellites_being_tracked)
+        if count==0:
+            Query = "where CAST(Number_of_satellites_being_tracked AS INT)="+""+str(Number_of_satellites_being_tracked)+""
+        else:
+            Query= Query + " And CAST(Number_of_satellites_being_tracked AS INT)="+""+str(Number_of_satellites_being_tracked)+""
+        count=count+1
+
+    if altitude!="":
+        altitude = int(altitude)
+        if count==0:
+            Query = "where CAST(altitude AS INT)="+""+str(altitude)+""
+        else:
+            Query=Query + " And CAST(altitude AS INT)="+""+str(altitude)+""
+        count=count+1
+
+
+    if SPEED!="":
+        SPEED = int(SPEED)
+        if count==0:
+            Query = "where CAST(SPEED AS INT)="+""+str(SPEED)+""
+        else:
+            Query=Query + " And CAST(SPEED AS INT)="+""+str(SPEED)+""
+        count=count+1
+
+    return Query
