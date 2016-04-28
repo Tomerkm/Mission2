@@ -89,7 +89,7 @@ def create_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_trac
         count=count+1
 
     if longtitude!="":
-        latitude = int(longtitude)
+        longtitude = int(longtitude)
         if count==0:
             Query = "where CAST(longtitude AS INT)="+""+str(longtitude)+""
         else:
