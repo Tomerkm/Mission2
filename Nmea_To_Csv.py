@@ -13,6 +13,7 @@ INPUT_FILENAME = 'in.nmea'
 OUTPUT_FILENAME = 'out.csv'
 
 counter=0
+counter_F=0
 
 def creat_csv(FILE_NAME):
 
@@ -132,15 +133,53 @@ def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
     size = Interface_Function.Count_Files_In_Db()
     conn = sqlite3.connect("tk.db")
     cursor = conn.cursor()
-    counter=1
-    print ("SIZE = "+str(size))
-    print("RES = " + Query)
-    while counter<=size:
-        print("FILER"+str(counter))
-        for row in cursor.execute("SELECT * FROM FILE"+str(counter)+" "+ Query ):
-            print (row[0] + " " + row[1] + " , " + str(row[2]) + " , " + str(row[4]))
-            print (str(row[6]) + " , "  + str(row[8]) + " , " + str(row[10]))
-        counter=counter+1
+    count=1
+    global counter_F
+    counter_F = counter_F + 1
+
+    with open("C:/Users/user/Downloads/Desktop/out_csv"+str(counter_F)+".csv", 'wt') as output_file:
+
+        # create a csv writer object for the output file
+        writer = csv.writer(output_file, delimiter=',', lineterminator='\n')
+
+        # write the header line to the csv file
+        writer.writerow(['date','time', 'lat', 'lon', 'speed'])
+
+
+
+        while count<=size:
+            print("FILER"+str(count))
+            for row in cursor.execute("SELECT * FROM FILE"+str(count)+" "+ Query ):
+                print (row[0] + " " + row[1] + " , " + str(row[2]) + " , " + str(row[4]))
+                print (str(row[6]) + " , "  + str(row[8]) + " , " + str(row[10]))
+                # lat and lon values in the $GPRMC nmea sentences come in an rather uncommon format. for convenience, convert them into the commonly used decimal degree format which most applications can read.
+                # the "high level" formula for conversion is: DDMM.MMMMM => DD + (YY.ZZZZ / 60), multiplicated with (-1) if direction is either South or West
+                # the following reflects this formula in mathematical terms.
+                # lat and lon have to be converted from string to float in order to do calculations with them.
+                # you probably want the values rounded to 6 digits after the point for better readability.
+                lat = round(math.floor(float(row[2]) / 100) + (float(row[2]) % 100) / 60, 6)
+                lat_direction = row[3]
+                if lat_direction == 'S':
+                    lat = lat * -1
+
+                lon = round(math.floor(float(row[4]) / 100) + (float(row[4]) % 100) / 60, 6)
+                lon_direction=row[5]
+                if lon_direction == 'W':
+                    lon = lon * -1
+
+                dater = row[0]
+                timer = row[1]
+                speed = row[10]
+                # write the calculated/formatted values of the row that we just read into the csv file
+                writer.writerow([dater,timer, lat, lon, speed])
+
+            count=count+1
+
+
+
+
+
+
 
 def main():
     print('main')
