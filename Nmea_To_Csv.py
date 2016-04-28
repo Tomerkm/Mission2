@@ -141,27 +141,43 @@ def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
 
     if latitude!="":
         latitude = int(latitude)
-        Query = "where CAST(latitude AS INT)="+""+str(latitude)+""
+        if count==0:
+            Query = "where CAST(latitude AS INT)="+""+str(latitude)+""
+        else:
+            Query= Query + " And CAST(latitude AS INT)="+""+str(latitude)+""
         count=count+1
 
     if longtitude!="":
         latitude = int(longtitude)
-        Query = "where CAST(longtitude AS INT)="+""+str(longtitude)+""
+        if count==0:
+            Query = "where CAST(longtitude AS INT)="+""+str(longtitude)+""
+        else:
+            Query= Query + " And CAST(longtitude AS INT)="+""+str(longtitude)+""
         count=count+1
 
     if Number_of_satellites_being_tracked!="":
         Number_of_satellites_being_tracked = int(Number_of_satellites_being_tracked)
-        Query = "where CAST(Number_of_satellites_being_tracked AS INT)="+""+str(Number_of_satellites_being_tracked)+""
+        if count==0:
+            Query = "where CAST(Number_of_satellites_being_tracked AS INT)="+""+str(Number_of_satellites_being_tracked)+""
+        else:
+            Query= Query + " And CAST(Number_of_satellites_being_tracked AS INT)="+""+str(Number_of_satellites_being_tracked)+""
         count=count+1
 
     if altitude!="":
         altitude = int(altitude)
-        Query = "where CAST(altitude AS INT)="+""+str(altitude)+""
+        if count==0:
+            Query = "where CAST(altitude AS INT)="+""+str(altitude)+""
+        else:
+            Query=Query + " And CAST(altitude AS INT)="+""+str(altitude)+""
         count=count+1
+
 
     if SPEED!="":
         SPEED = int(SPEED)
-        Query = "where CAST(SPEED AS INT)="+""+str(SPEED)+""
+        if count==0:
+            Query = "where CAST(SPEED AS INT)="+""+str(SPEED)+""
+        else:
+            Query=Query + " And CAST(SPEED AS INT)="+""+str(SPEED)+""
         count=count+1
 
 
@@ -169,8 +185,8 @@ def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
     cursor = conn.cursor()
     print("RES = " + Query)
     for row in cursor.execute("SELECT * FROM FILE1 " + Query ):
-        print (row[0] + " " + row[1])
-
+        print (row[0] + " " + row[1] + " , " + str(row[2]) + " , " + str(row[4]))
+        print (row[6] + " " + row[7] + " , " + str(row[8]) + " , " + str(row[10]))
 def main():
     print('main')
 
