@@ -122,16 +122,14 @@ def creat_csv(FILE_NAME):
 
 
 def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_tracked,altitude,SPEED):
-    Query=""
-    Interface_Function.Valid_Input(Query,DATER,TIMER,latitude,longtitude,Number_of_satellites_being_tracked,altitude,SPEED)
     print('tomer')
+
+    #Query = "where SPEED ="+str(4)
+
     conn = sqlite3.connect("tk.db")
     cursor = conn.cursor()
-    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-    tables = cursor.fetchall()
-    for tbl in tables:
-        for row in cursor.execute("SELECT * FROM "+tbl+" " + Query + ";"):
-            print (row[0])
+    for row in cursor.execute("SELECT * FROM FILE1 " +Query):
+        print (row[10])
 
 def main():
     print('main')

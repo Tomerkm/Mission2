@@ -118,7 +118,7 @@ iframe2.pack(expand=1, fill=X, pady=10, padx=5)
 iframe2 = Frame(frame, bd=2, relief=RIDGE)
 
 Label(iframe2,text="Click On Button That You want TO Query from Your Db:",fg="teal").pack(side=TOP,padx=0)
-Button(iframe2,text="convert to csv",background="red",relief=SOLID,command = lambda:Interface_Function.Valid_Input(Dater.get(),Timer.get(),latitude.get(),longtitude.get(),Number_of_satellites_being_tracked.get(),altitude.get(),SPEED.get())).pack(side=TOP,padx=0)
+Button(iframe2,text="convert to csv",background="red",relief=SOLID,command = lambda:Nmea_To_Csv.create_Csv_Query(Dater.get(),Timer.get(),latitude.get(),longtitude.get(),Number_of_satellites_being_tracked.get(),altitude.get(),SPEED.get())).pack(side=TOP,padx=0)
 Button(iframe2,text="convert to kml",background="green",relief=SOLID,command = lambda:Nmea_To_kml.create_kml(t.get())).pack(side=TOP,padx=0)
 
 
