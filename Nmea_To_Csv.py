@@ -137,7 +137,7 @@ def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
     global counter_F
     counter_F = counter_F + 1
 
-    with open("C:/Users/user/Downloads/Desktop/out_csv"+str(counter_F)+".csv", 'wt') as output_file:
+    with open("C:/Users/user/Downloads/Desktop/out_csv_Query"+str(counter_F)+".csv", 'wt') as output_file:
 
         # create a csv writer object for the output file
         writer = csv.writer(output_file, delimiter=',', lineterminator='\n')
@@ -173,7 +173,7 @@ def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
 
             count=count+1
 
-    messagebox.showinfo("Succesfull", "The Csv File Has been created in your desktop: out_csv "+str(counter_F)+".csv")
+    messagebox.showinfo("Succesfull", "The Csv File Has been created in your desktop: out_csv_Query "+str(counter_F)+".csv")
 
 
 

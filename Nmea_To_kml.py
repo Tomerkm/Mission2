@@ -100,7 +100,7 @@ def create_KML_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
     global counter_F
     counter_F = counter_F + 1
 
-    out_filename = "C:/Users/user/Downloads/Desktop/out_kml"+str(counter_F)+".kml"
+    out_filename = "C:/Users/user/Downloads/Desktop/out_kml_Query"+str(counter_F)+".kml"
     kml_file = open(out_filename,'w')
 
     kml_file.write('<?xml version="1.0"  encoding="UTF-8"?>\n')
@@ -115,14 +115,9 @@ def create_KML_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
 
             kml_file.write('<Placemark>\n')
 
-            print(str(row[2][:2]))
-            print(str(row[2][2:]))
-            print(str(row[4][:3]))
-            print(str(row[4][3:]))
 
-
-            latituder = float(row[2][:2]) + (float(row[2][2:]) / 60)
-            longtituder = float(row[4][:3]) + (float(row[4][3:]) / 60)
+            latituder = round(math.floor(float(row[2]) / 100) + (float(row[2]) % 100) / 60, 6)
+            longtituder = round(math.floor(float(row[4]) / 100) + (float(row[4]) % 100) / 60, 6)
             altituder = row[9]
 
             kml_file.write('<Point>\n')
@@ -139,7 +134,7 @@ def create_KML_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
     kml_file.write('</Document>\n')
     kml_file.write('</kml>\n')
     kml_file.close()
-    messagebox.showinfo("Succesfull", "The kml File Has been created in your desktop: out_kml "+str(counter_F)+".csv")
+    messagebox.showinfo("Succesfull", "The kml File Has been created in your desktop: out_kml_Query "+str(counter_F)+".csv")
 
 def main():
     print('main')
