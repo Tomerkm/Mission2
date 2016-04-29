@@ -148,10 +148,8 @@ def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
 
 
         while count<=size:
-            print("FILER"+str(count))
             for row in cursor.execute("SELECT * FROM FILE"+str(count)+" "+ Query ):
-                print (row[0] + " " + row[1] + " , " + str(row[2]) + " , " + str(row[4]))
-                print (str(row[6]) + " , "  + str(row[8]) + " , " + str(row[10]))
+
                 # lat and lon values in the $GPRMC nmea sentences come in an rather uncommon format. for convenience, convert them into the commonly used decimal degree format which most applications can read.
                 # the "high level" formula for conversion is: DDMM.MMMMM => DD + (YY.ZZZZ / 60), multiplicated with (-1) if direction is either South or West
                 # the following reflects this formula in mathematical terms.
@@ -175,6 +173,7 @@ def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
 
             count=count+1
 
+    messagebox.showinfo("Succesfull", "The Csv File Has been created in your desktop: out_csv "+str(counter_F)+".csv")
 
 
 

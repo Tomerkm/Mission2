@@ -3,8 +3,12 @@ import re
 import math
 from tkinter import messagebox
 import os.path
+import Interface_Function
+import sqlite3
 
 counter=0
+counter_F=0
+
 
 def create_kml(FILE_NAME):
 
@@ -85,9 +89,57 @@ def create_kml(FILE_NAME):
     messagebox.showinfo("Succesfull", "The kml File Has been created in your desktop: out_kml "+str(counter)+".csv")
 
 
+def create_KML_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_tracked,altitude,SPEED):
+
+    Interface_Function.Valid_Input(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_tracked,altitude,SPEED)
+    Query = Interface_Function.create_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_tracked,altitude,SPEED)
+    size = Interface_Function.Count_Files_In_Db()
+    conn = sqlite3.connect("tk.db")
+    cursor = conn.cursor()
+    count=1
+    global counter_F
+    counter_F = counter_F + 1
+
+    out_filename = "C:/Users/user/Downloads/Desktop/out_kml"+str(counter_F)+".kml"
+    kml_file = open(out_filename,'w')
+
+    kml_file.write('<?xml version="1.0"  encoding="UTF-8"?>\n')
+    kml_file.write('<kml xmlns="http://www.opengis.net/kml/2.2">\n')
+    kml_file.write('<Document>\n')
+    kml_file.write('<Folder>\n')
+    kml_file.write('<name>Point Features</name>\n')
+    kml_file.write('<description>Point Features</description>\n')
+
+    while count<=size:
+        for row in cursor.execute("SELECT * FROM FILE"+str(count)+" "+ Query ):
+
+            kml_file.write('<Placemark>\n')
+
+            print(str(row[2][:2]))
+            print(str(row[2][2:]))
+            print(str(row[4][:3]))
+            print(str(row[4][3:]))
+
+
+            latituder = float(row[2][:2]) + (float(row[2][2:]) / 60)
+            longtituder = float(row[4][:3]) + (float(row[4][3:]) / 60)
+            altituder = row[9]
+
+            kml_file.write('<Point>\n')
+
+            kml_file.write('<coordinates> %s,%s,%s </coordinates>\n' % (longtituder,latituder,altituder))
+            kml_file.write('</Point>\n')
+            kml_file.write('</Placemark>\n')
 
 
 
+        count=count+1
+
+    kml_file.write('</Folder>\n')
+    kml_file.write('</Document>\n')
+    kml_file.write('</kml>\n')
+    kml_file.close()
+    messagebox.showinfo("Succesfull", "The kml File Has been created in your desktop: out_kml "+str(counter_F)+".csv")
 
 def main():
     print('main')
