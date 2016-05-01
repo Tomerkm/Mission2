@@ -18,7 +18,8 @@ make simulator.
 you can insert some points with speed.
 but you cant insert him something like:haifa to zefat,just points.
 
-the best-
+the best: 
+
 3)freeanmea.net
 very fast.
 you can make random nmea.
