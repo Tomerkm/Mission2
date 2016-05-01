@@ -15,7 +15,7 @@ OUTPUT_FILENAME = 'out.csv'
 counter=0
 counter_F=0
 
-def creat_csv(FILE_NAME):
+def create_csv(FILE_NAME):
 
 
 
@@ -122,7 +122,7 @@ def creat_csv(FILE_NAME):
                     # write the calculated/formatted values of the row that we just read into the csv file
                     writer.writerow([dater.date(),timer.time(), lat, lon, speed])
 
-    messagebox.showinfo("Succesfull", "The Csv File Has been created in Csv_Files us: out_csv"+str(counter)+".csv")
+    messagebox.showinfo("Succesfull", "The Csv File Has been created in Csv_Files:out_csv"+str(counter)+".csv")
 
 
 
@@ -173,7 +173,7 @@ def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
 
             count=count+1
 
-    messagebox.showinfo("Succesfull", "The Csv File Has been created in Csv_Files us: out_csv_Query"+str(counter_F)+".csv")
+    messagebox.showinfo("Succesfull", "The Csv File Has been created in Csv_Files:out_csv_Query"+str(counter_F)+".csv")
 
 
 
