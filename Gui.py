@@ -113,6 +113,8 @@ Entry(iframe2,textvariable=SPEED, fg="red", bg='white').pack(side=LEFT,padx=0)
 SPEED.set("")
 
 
+
+
 iframe2.pack(expand=1, fill=X, pady=10, padx=5)
 
 iframe2 = Frame(frame, bd=2, relief=RIDGE)
