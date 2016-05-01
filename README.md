@@ -12,13 +12,19 @@ his quality very low.
 cant define speed.
 simple app.
 
-2)freeanmea.net
+
+2)nmea generator ver 1.18
+make simulator.
+you can insert some points with speed.
+but you cant insert him something like:haifa to zefat,just points.
+
+the best-
+3)freeanmea.net
 very fast.
 you can make random nmea.
 you can make nmea file beteen 2 places.
 you can define the speed.(run,walk,fly).
 
-3)google visual: ======need to find
 
 ===============================================================
 second part:the system:
