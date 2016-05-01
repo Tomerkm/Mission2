@@ -35,7 +35,7 @@ def creat_csv(FILE_NAME):
     with open(FILE_NAME, 'r') as input_file:
 
         # open the output file in write mode
-        with open("out_csv"+str(counter)+".csv", 'wt') as output_file:
+        with open("Csv_Files\out_csv"+str(counter)+".csv", 'wt') as output_file:
 
             # create a csv reader object from the input file (nmea files are basically csv)
             reader = csv.reader(input_file)
@@ -122,7 +122,7 @@ def creat_csv(FILE_NAME):
                     # write the calculated/formatted values of the row that we just read into the csv file
                     writer.writerow([dater.date(),timer.time(), lat, lon, speed])
 
-    messagebox.showinfo("Succesfull", "The Csv File Has been created:out_csv "+str(counter)+".csv")
+    messagebox.showinfo("Succesfull", "The Csv File Has been created in Csv_Files us:out_csv"+str(counter)+".csv")
 
 
 
@@ -137,7 +137,7 @@ def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
     global counter_F
     counter_F = counter_F + 1
 
-    with open("out_csv_Query"+str(counter_F)+".csv", 'wt') as output_file:
+    with open("Csv_Files\out_csv_Query"+str(counter_F)+".csv", 'wt') as output_file:
 
         # create a csv writer object for the output file
         writer = csv.writer(output_file, delimiter=',', lineterminator='\n')
@@ -173,7 +173,7 @@ def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
 
             count=count+1
 
-    messagebox.showinfo("Succesfull", "The Csv File Has been created:out_csv_Query "+str(counter_F)+".csv")
+    messagebox.showinfo("Succesfull", "The Csv File Has been created in Csv_Files us:out_csv_Query"+str(counter_F)+".csv")
 
 
 

@@ -27,7 +27,7 @@ def create_kml(FILE_NAME):
     counter+=1
 
 
-    out_filename = "out_kml"+str(counter)+".kml"
+    out_filename = "Kml_Files/out_kml"+str(counter)+".kml"
     kml_file = open(out_filename,'w')
 
     kml_file.write('<?xml version="1.0"  encoding="UTF-8"?>\n')
@@ -86,7 +86,7 @@ def create_kml(FILE_NAME):
     kml_file.write('</Document>\n')
     kml_file.write('</kml>\n')
     kml_file.close()
-    messagebox.showinfo("Succesfull", "The kml File Has been created:out_kml "+str(counter)+".csv")
+    messagebox.showinfo("Succesfull", "The kml File Has been created in Kml_Files us:out_kml"+str(counter)+".kml")
 
 
 def create_KML_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_tracked,altitude,SPEED):
@@ -100,7 +100,7 @@ def create_KML_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
     global counter_F
     counter_F = counter_F + 1
 
-    out_filename = "out_kml_Query"+str(counter_F)+".kml"
+    out_filename = "Kml_Files/out_kml_Query"+str(counter_F)+".kml"
     kml_file = open(out_filename,'w')
 
     kml_file.write('<?xml version="1.0"  encoding="UTF-8"?>\n')
@@ -134,7 +134,7 @@ def create_KML_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
     kml_file.write('</Document>\n')
     kml_file.write('</kml>\n')
     kml_file.close()
-    messagebox.showinfo("Succesfull", "The kml File Has been created:out_kml_Query "+str(counter_F)+".csv")
+    messagebox.showinfo("Succesfull", "The kml File Has been created in Kml_Files us:out_kml_Query"+str(counter_F)+".kml")
 
 def main():
     print('main')
