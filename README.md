@@ -47,8 +47,7 @@ behind this system there are some classes:
  2)create_kml_query:make kml file like the other function but the difference is that he take the data from the data base.
 
 4)sqllite:have 1 function:
- 1)create_table:get the name of the file,connect to the data base.clean the old tables.
- make new table and insert the data.
+ 1)create_table:get the name of the file,connect to the data base.clean the old tables. make new table and insert the data.
 ===================================================================================
 third part:A detailed diagram of the data base:
 
