@@ -86,7 +86,7 @@ def create_kml(FILE_NAME):
     kml_file.write('</Document>\n')
     kml_file.write('</kml>\n')
     kml_file.close()
-    messagebox.showinfo("Succesfull", "The kml File Has been created in Kml_Files us:out_kml"+str(counter)+".kml")
+    messagebox.showinfo("Succesfull", "The kml File Has been created in Kml_Files us: out_kml"+str(counter)+".kml")
 
 
 def create_KML_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_tracked,altitude,SPEED):
@@ -134,7 +134,7 @@ def create_KML_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
     kml_file.write('</Document>\n')
     kml_file.write('</kml>\n')
     kml_file.close()
-    messagebox.showinfo("Succesfull", "The kml File Has been created in Kml_Files us:out_kml_Query"+str(counter_F)+".kml")
+    messagebox.showinfo("Succesfull", "The kml File Has been created in Kml_Files us: out_kml_Query"+str(counter_F)+".kml")
 
 def main():
     print('main')
