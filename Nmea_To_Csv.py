@@ -31,6 +31,10 @@ def create_csv(FILE_NAME):
     global counter
     counter+=1
 
+    newpath = r'Csv_Files'
+    if not os.path.exists(newpath):
+        os.makedirs(newpath)
+
 # open the input file in read mode
     with open(FILE_NAME, 'r') as input_file:
 
@@ -136,6 +140,10 @@ def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
     count=1
     global counter_F
     counter_F = counter_F + 1
+
+    newpath = r'Csv_Files'
+    if not os.path.exists(newpath):
+        os.makedirs(newpath)
 
     with open("Csv_Files\out_csv_Query"+str(counter_F)+".csv", 'wt') as output_file:
 

@@ -26,6 +26,10 @@ def create_kml(FILE_NAME):
     global counter
     counter+=1
 
+    newpath = r'Kml_Files'
+    if not os.path.exists(newpath):
+        os.makedirs(newpath)
+
 
     out_filename = "Kml_Files/out_kml"+str(counter)+".kml"
     kml_file = open(out_filename,'w')
@@ -99,6 +103,10 @@ def create_KML_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
     count=1
     global counter_F
     counter_F = counter_F + 1
+
+    newpath = r'Kml_Files'
+    if not os.path.exists(newpath):
+        os.makedirs(newpath)
 
     out_filename = "Kml_Files/out_kml_Query"+str(counter_F)+".kml"
     kml_file = open(out_filename,'w')
