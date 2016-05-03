@@ -5,6 +5,9 @@ from tkinter import messagebox
 import os.path
 import Interface_Function
 import sqlite3
+import shutil
+
+
 
 counter=0
 counter_F=0
@@ -23,7 +26,14 @@ def create_kml(FILE_NAME):
         messagebox.showinfo("error", "The Source File Does not exists")
         return
 
+
+
     global counter
+
+    if counter==0 and counter_F==0:
+        if os.path.exists('Kml_Files'):
+            shutil.rmtree('Kml_Files')
+
     counter+=1
 
     newpath = r'Kml_Files'
@@ -103,6 +113,11 @@ def create_KML_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
     count=1
     global counter_F
     counter_F = counter_F + 1
+
+
+    if counter==0 and counter_F==0:
+        if os.path.exists('Kml_Files'):
+            shutil.rmtree('Kml_Files')
 
     newpath = r'Kml_Files'
     if not os.path.exists(newpath):

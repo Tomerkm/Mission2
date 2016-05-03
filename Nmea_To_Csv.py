@@ -6,6 +6,8 @@ import math
 from tkinter import messagebox
 import os.path
 import Interface_Function
+import shutil
+
 
 # adapt this to your file
 
@@ -29,6 +31,11 @@ def create_csv(FILE_NAME):
         messagebox.showinfo("error", "The Source File Does not exists")
         return
     global counter
+
+    if counter==0 and counter_F==0:
+        if os.path.exists('Csv_Files'):
+            shutil.rmtree('Csv_Files')
+
     counter+=1
 
     newpath = r'Csv_Files'
@@ -139,6 +146,10 @@ def create_Csv_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
     cursor = conn.cursor()
     count=1
     global counter_F
+    if counter==0 and counter_F==0:
+        if os.path.exists('Csv_Files'):
+            shutil.rmtree('Csv_Files')
+
     counter_F = counter_F + 1
 
     newpath = r'Csv_Files'
