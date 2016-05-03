@@ -110,14 +110,20 @@ def create_KML_Query(DATER,TIMER,latitude,longtitude,Number_of_satellites_being_
     size = Interface_Function.Count_Files_In_Db()
     conn = sqlite3.connect("tk.db")
     cursor = conn.cursor()
+
+
+
+
     count=1
     global counter_F
-    counter_F = counter_F + 1
-
 
     if counter==0 and counter_F==0:
         if os.path.exists('Kml_Files'):
             shutil.rmtree('Kml_Files')
+
+    counter_F = counter_F + 1
+
+
 
     newpath = r'Kml_Files'
     if not os.path.exists(newpath):
