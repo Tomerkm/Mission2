@@ -51,8 +51,6 @@ Label(frame2,text="Insert Values To the Options That you want to Query to csv or
 frame2.pack(expand=1, fill=X, pady=0, padx=0)
 
 
-
-
 frame = Frame(root, width=500, height=400, bd=1)
 frame.pack()
 
